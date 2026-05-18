@@ -25,9 +25,9 @@ https://en.wikipedia.org/wiki/Android_(robot)
 
 ### Project Files
 
-- .gitignore
 - ai/
   - claude.txt
+- .gitignore
 - go.mod
 - go.sum
 - main.go
@@ -98,7 +98,6 @@ The Go/Colly scraper is a good replacement for the Python/Scrapy example for thi
 **Sources**
 
 - https://github.com/seversky/gachifinder/blob/master/scrape/scrape.go
-
 - https://github.com/gocolly/colly
 
 **AI**
