@@ -90,7 +90,7 @@ The scraper successfully creates a JSON Lines file with one JSON object per Wiki
 
 ## Recommendation
 
-The Go/Colly scraper is a good replacement for the Python/Scrapy example for this assignment. It uses the same URL list, produces JSON Lines output, and runs faster in this test. Go also provides a clear structure for concurrency using Colly's asynchronous collector.
+The firm should switch to Go. The Go/Colly scraper is an excellent alternative to the provided Python/Scrapy example. It produces the same JSON Lines output using the same URL list, but ran faster in this test. Colly's asynchronous collector also gives the code a clear concurrency structure. The performance gap appeared even with only ten pages, suggesting that Go could provide greater benefits as the firm's project scales.
 
 ## GenAI Tools and Sources
 
