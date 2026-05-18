@@ -1,0 +1,35 @@
+
+scraper.go
+should I add more to my cleaning function?
+Let me read the file to see what your cleaning function looks like.
+
+Read scraper.go
+Your clean function (line 154-156) currently just collapses whitespace. Whether to add more depends on your use case, but a few common things worth considering for Wikipedia text:
+
+Citation brackets — [1], [2], etc. appear frequently and are usually noise for NLP/ML tasks. Strip with a simple regex: regexp.MustCompile([\d+]).ReplaceAllString(..., "").
+Parenthetical pronunciations — Wikipedia often has (/ˌrəʊ.bɒt.ɪks/) style IPA strings that are rarely useful.
+Unicode normalization — non-breaking spaces (\u00a0), soft hyphens, and similar characters sometimes slip through strings.Fields because they aren't standard ASCII spaces.
+If this scraper feeds an LLM or embedding pipeline, stripping [1] citation markers is the most impactful single addition. If it's just for human reading or search, what you have is probably fine.
+
+Want me to add any of these?
+
+scraper.go
+Is that better?
+Let me re-read the file to see what you changed.
+
+Read scraper.go
+Yes, that's a solid improvement. One thing worth noting: compiling the regex inside clean means it gets recompiled on every paragraph. Since clean is called in a hot loop, you should move the compiled regex to a package-level variable:
+
+
+var citationRe = regexp.MustCompile(`\[\d+\]`)
+
+func clean(content string) string {
+    content = citationRe.ReplaceAllString(content, "")
+    return strings.Join(strings.Fields(content), " ")
+}
+regexp.MustCompile is safe to use at package level and the compiled *Regexp is safe for concurrent use, so this works cleanly with your async scraper. Want me to make that change?
+
+yes please
+Edit scraper.go
+Modified
+Done. The regex is now compiled once at startup instead of on every call to clean.
