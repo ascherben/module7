@@ -86,8 +86,7 @@ I also compared the Go/Colly scraper with the provided Python/Scrapy example usi
 | Go/Colly | ~ 5.53 seconds |
 
 
-The scraper successfully creates a JSON Lines file with one JSON object per Wikipedia page. The output includes the page URL, extracted text, and timestamp.
-
+The scraper successfully creates a JSON Lines file with one JSON object per Wikipedia page. The output includes the page URL, extracted text, and timestamp. This comparison is approximate. The Go version uses Colly with asynchronous scraping and limited concurrency.
 
 ## Recommendation
 
